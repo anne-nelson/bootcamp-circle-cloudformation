@@ -27,6 +27,8 @@ class AppComponents(context: ApplicationLoader.Context) extends BuiltInComponent
   val tableName = configuration.get[String]("dynamo.table")
   val dynamoTable: Table[TodoItem] = Table[TodoItem](tableName)
 
+  //Useless comment
+
   val todoController = new TodoController(controllerComponents, dynamoClient, new DynamoOps(dynamoTable))
 
   override def router: Router = new Routes(httpErrorHandler, todoController)
