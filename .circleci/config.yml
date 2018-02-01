@@ -1,9 +1,28 @@
 version: 2
 jobs:
-  build:
+  test:
     docker:
       - image: adambene/circleci-openjdk-awscli
     working_directory: ~/bootcamp-circle-cloudformation
     steps:
       - checkout
       - run: sbt test
+  deploy:
+    filters:
+      branches:
+        only:
+          - master
+    docker:
+      - image: adambene/circleci-openjdk-awscli
+    working_directoyr: ~/bootcamp-circle-cloudformation
+    steps:
+      - checkout
+      - run: ./build-and-deploy-to-aws.sh no-emojis-make-me-sad-asg no-emojis-make-me-sad
+workflows:
+  version: 2
+  test_and_deploy:
+    jobs:
+      - test
+      - deploy:
+        requires:
+          - test
