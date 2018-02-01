@@ -13,7 +13,7 @@ jobs:
     working_directoyr: ~/bootcamp-circle-cloudformation
     steps:
       - checkout
-      - run: ./build-and-deploy-to-aws.sh no-emojis-make-me-sad-asg-AutoScalingGroup-BDGPF0J7PBPM no-emojis-make-me-sad
+      - run: ./build-and-deploy-to-aws.sh no-emojis-make-me-sad-asg-AutoScalingGroup-BDGPF0J7PBPM no-emojis-makes-me-sad
 workflows:
   version: 2
   test_and_deploy:
