@@ -8,10 +8,6 @@ jobs:
       - checkout
       - run: sbt test
   deploy:
-    filters:
-      branches:
-        only:
-          - master
     docker:
       - image: adambene/circleci-openjdk-awscli
     working_directoyr: ~/bootcamp-circle-cloudformation
@@ -24,5 +20,9 @@ workflows:
     jobs:
       - test
       - deploy:
+        filters:
+          branches:
+            only:
+              - master
         requires:
           - test
